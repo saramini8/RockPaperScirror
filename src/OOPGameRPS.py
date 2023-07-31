@@ -7,15 +7,18 @@ class Participate:
 
     def Choose(self):
         self.choice = input(f'Dear {self.name}, please choose one: Rock/Paper/Scissor\n')
+        while self.choice.lower() not in ("rock","paper","scissor"):
+            self.choice = input(f'Dear {self.name}, it is an invalid choice!\n Please type one of the valid options: Rock/Paper/Scissor\n')
+            
         print(f'{self.name} choose {self.choice}')
 
     def toNum(self):
         ChosenNum ={
-            "Rock": 0,
-            "Paper": 1,
-            "Scissor": 2
+            "rock": 0,
+            "paper": 1,
+            "scissor": 2
         }
-        return ChosenNum[self.choice]
+        return ChosenNum[self.choice.lower()]
 
     def AddPoint(self):
         self.point+=1
@@ -52,8 +55,10 @@ class GameRound:
 class Game:
     def __init__(self):
         self.endOfTheGame = False
-        self.p1 = Participate("Sara")
-        self.p2 = Participate("Nima")
+        name1 = input("Please let me know your name as the first player:\n")
+        name2 = input("Please let me know your name as the second player:\n")
+        self.p1 = Participate(name1)
+        self.p2 = Participate(name2)
 
     def start(self):
         while not self.endOfTheGame:
